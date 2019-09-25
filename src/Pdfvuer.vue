@@ -36,20 +36,20 @@ function createLoadingTask(src, options) {
 		throw new TypeError('invalid src type');
 
 	// see https://github.com/mozilla/pdf.js/blob/628e70fbb5dea3b9066aa5c34cca70aaafef8db2/src/display/dom_utils.js#L64
-	// source.CMapReaderFactory = function() {
+	source.CMapReaderFactory = function() {
 
-	// 	this.fetch = function(query) {
+		this.fetch = function(query) {
 
-	// 		return import('raw-loader!pdfjs-dist/cmaps/'+query.name+'.bcmap' /* webpackChunkName: "noprefetch-[request]" */)
-	// 		.then(function(bcmap) {
+			return import('raw-loader!pdfjs-dist/cmaps/'+query.name+'.bcmap' /* webpackChunkName: "noprefetch-[request]" */)
+			.then(function(bcmap) {
 
-	// 			return {
-	// 				cMapData: bcmap,
-	// 				compressionType: pdfjsLib.CMapCompressionType.BINARY,
-	// 			};
-	// 		});
-	// 	}
-	// };
+				return {
+					cMapData: bcmap,
+					compressionType: pdfjsLib.CMapCompressionType.BINARY,
+				};
+			});
+		}
+	};
 
 
 	var loadingTask = pdfjsLib.getDocument(source);
