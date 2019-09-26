@@ -28,10 +28,10 @@ function isPDFDocumentLoadingTask(obj) {
 function createLoadingTask(src, options) {
 	var source;
 	if ( typeof(src) === 'string' )
-		source = { url: src, disableFontFace: false };
+		source = { url: src, disableFontFace: true };
 	else
 	if ( typeof(src) === 'object' && src !== null )
-		source = Object.assign({}, src, { disableFontFace: false });
+		source = Object.assign({}, src, { disableFontFace: true });
 	else
 		throw new TypeError('invalid src type');
 
